@@ -21,13 +21,23 @@ namespace Innoria.Demo.Base64
         private void Form1_DragDrop(object sender, DragEventArgs e)
         {
             Debug.WriteLine("Drop");
+            var file = ((string[])e.Data.GetData(DataFormats.FileDrop, false))[0];
+            var base64Text = Base64Algorithm.EncodeFromFile(file);
+            System.IO.File.WriteAllText(@".\data-encoded.txt", base64Text);
+            System.Diagnostics.Process.Start(@".\data-encoded.txt");
+            //MessageBox.Show(rs, "Data Encoded");
         }
 
         private void Form1_DragEnter(object sender, DragEventArgs e)
         {
             Debug.WriteLine("Enter");
             label1.ForeColor = Color.Gray;
-            e.Effect = DragDropEffects.All;
+            // Check if the Dataformat of the data can be accepted
+            // (we only accept file drops from Explorer, etc.)
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+                e.Effect = DragDropEffects.Copy; // Okay
+            else
+                e.Effect = DragDropEffects.None; // Unknown data, ignore it
         }
 
         private void Form1_DragLeave(object sender, EventArgs e)
