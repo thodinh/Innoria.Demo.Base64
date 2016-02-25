@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace Innoria.Demo.Base64
 {
-    public partial class Form1 : Form
+    public partial class FormDemo : Form
     {
-        public Form1()
+        public FormDemo()
         {
             InitializeComponent();
         }

@@ -1,6 +1,6 @@
 ﻿namespace Innoria.Demo.Base64
 {
-    partial class Form1
+    partial class FormDemo
     {
         /// <summary>
         /// Required designer variable.
